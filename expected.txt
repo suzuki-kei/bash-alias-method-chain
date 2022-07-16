@@ -1,0 +1,48 @@
+============================================================
+
+    ---- BEGIN ----
+    /dev/null
+    ---- END ----
+
+---- BEGIN ----
+/dev/null
+---- END ----
+
+/dev/null
+
+============================================================
+
+    ---- BEGIN ----
+    Hello
+    ---- END ----
+
+---- BEGIN ----
+Hello
+---- END ----
+
+Hello
+
+============================================================
+
+    ---- BEGIN ----
+    /Users/suzuki.kei/workspace/localhost/bash-alias-method-chain
+    ---- END ----
+
+---- BEGIN ----
+/Users/suzuki.kei/workspace/localhost/bash-alias-method-chain
+---- END ----
+
+/Users/suzuki.kei/workspace/localhost/bash-alias-method-chain
+
+============================================================
+
+    ---- BEGIN ----
+    ABCDE
+    ---- END ----
+
+---- BEGIN ----
+ABCDE
+---- END ----
+
+ABCDE
+
