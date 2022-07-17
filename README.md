@@ -21,3 +21,8 @@ Ruby on Rails (ActiveSupport) における alias_method_chain の Bash 版.
     Hello
     ---- END ----
 
+# 各種手順
+
+    # テストを実行する
+    $ bash test.sh
+
