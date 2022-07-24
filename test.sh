@@ -21,22 +21,22 @@ trap 'report_assertion_failure ${LINENO} "${BASH_COMMAND}"' ERR
 
 alias ls='\ls -F'
 
-if [[ "$(type -t ls)" != 'alias' ]]; then
-    echo 'ERROR: ls is not alias' >&2
-fi
-
 function ls_with_trace
 {
     echo '---- BEGIN ----'
     ls_without_trace "$@"
     echo '---- END ----'
 }
+
+test "$(type -t ls)" = 'alias'
 alias_method_chain ls trace
 
 function ls_with_indent
 {
     ls_without_indent "$@" | sed -r 's/^/    /'
 }
+
+test "$(type -t ls)" = 'alias'
 alias_method_chain ls indent
 
 test "$(ls /dev/null)" = "$(cat <<EOS
@@ -64,23 +64,22 @@ function greeting
 {
     echo "$1"
 }
-
-if [[ "$(type -t greeting)" != 'function' ]]; then
-    echo 'ERROR: greeting is not function' >&2
-fi
-
 function greeting_with_trace
 {
     echo '---- BEGIN ----'
     greeting_without_trace "$@"
     echo '---- END ----'
 }
+
+test "$(type -t greeting)" = 'function'
 alias_method_chain greeting trace
 
 function greeting_with_indent
 {
     greeting_without_indent "$@" | sed -r 's/^/    /'
 }
+
+test "$(type -t greeting)" = 'function'
 alias_method_chain greeting indent
 
 test "$(greeting 'Hello')" = "$(cat <<EOS
@@ -104,22 +103,22 @@ EOS)"
 # builtin
 #
 
-if [[ "$(type -t pwd)" != 'builtin' ]]; then
-    echo 'ERROR: pwd is not alias' >&2
-fi
-
 function pwd_with_trace
 {
     echo '---- BEGIN ----'
     pwd_without_trace "$@"
     echo '---- END ----'
 }
+
+test "$(type -t pwd)" = 'builtin'
 alias_method_chain pwd trace
 
 function pwd_with_indent
 {
     pwd_without_indent "$@" | sed -r 's/^/    /'
 }
+
+test "$(type -t pwd)" = 'alias'
 alias_method_chain pwd indent
 
 test "$(pwd)" = "$(cat <<EOS
@@ -143,22 +142,22 @@ EOS)"
 # file
 #
 
-if [[ "$(type -t tr)" != 'file' ]]; then
-    echo 'ERROR: tr is not alias' >&2
-fi
-
 function tr_with_trace
 {
     echo '---- BEGIN ----'
     tr_without_trace "$@"
     echo '---- END ----'
 }
+
+test "$(type -t tr)" = 'file'
 alias_method_chain tr trace
 
 function tr_with_indent
 {
     tr_without_indent "$@" | sed -r 's/^/    /'
 }
+
+test "$(type -t tr)" = 'alias'
 alias_method_chain tr indent
 
 test "$(echo abcde | tr 'a-z' 'A-Z')" = "$(cat <<EOS
