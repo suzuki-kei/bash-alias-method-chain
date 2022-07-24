@@ -35,7 +35,6 @@
 #     hello 'Taro'
 #
 
-set -eu
 shopt -s expand_aliases
 
 function alias_method_chain {
