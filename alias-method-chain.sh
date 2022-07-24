@@ -38,61 +38,31 @@
 set -eu
 shopt -s expand_aliases
 
-function alias_method_chain
-{
+function alias_method_chain {
     local -r name="$1"
     local -r functionality="$2"
 
     case $(type -t "$name") in
         alias)
             eval "$(cat <<EOS
-                function ${name}_without_${functionality}
-                {
+                function ${name}_without_${functionality} {
                     $(type "$name" | sed -r "s/^$name is aliased to \`|'$//g") "\$@"
                 }
-                alias ${name}='${name}_with_${functionality}'
+                builtin alias ${name}=${name}_with_${functionality}
 EOS)"
             return 0
             ;;
-        keyword)
-            echo "ERROR: $name is shell reserved keyword." >&2
-            return 1
-            ;;
-        function)
+        builtin | file | function)
             eval "$(cat <<EOS
-                function ${name}_without_${functionality}
-                {
-                    $(type "$name" | tail -n +4 | head -n -1)
+                function ${name}_without_${functionality} {
+                    ${name} "\$@"
                 }
-                function ${name}
-                {
-                    ${name}_with_${functionality} "\$@"
-                }
-EOS)"
-            return 0
-            ;;
-        builtin)
-            eval "$(cat <<EOS
-                function ${name}_without_${functionality}
-                {
-                    $name "\$@"
-                }
-                builtin alias ${name}='${name}_with_${functionality}'
-EOS)"
-            return 0
-            ;;
-        file)
-            eval "$(cat <<EOS
-                function ${name}_without_${functionality}
-                {
-                    $name "\$@"
-                }
-                builtin alias ${name}='${name}_with_${functionality}'
+                builtin alias ${name}=${name}_with_${functionality}
 EOS)"
             return 0
             ;;
         *)
-            echo "ERROR: $(type -t '$name') is unsupported type." >&2
+            echo "ERROR: $(type -t '${name}') is unsupported type." >&2
             return 1
             ;;
     esac

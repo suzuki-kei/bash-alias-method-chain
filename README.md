@@ -37,5 +37,5 @@ Ruby on Rails (ActiveSupport) における alias_method_chain の Bash 版.
 # 各種手順
 
     # テストを実行する
-    $ bash test.sh
+    $ bash alias-method-chain-test.sh
 
