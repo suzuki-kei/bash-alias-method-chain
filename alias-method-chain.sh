@@ -48,7 +48,7 @@ function alias_method_chain
             eval "$(cat <<EOS
                 function ${name}_without_${functionality}
                 {
-                    $(type "$name" | sed -r "s/^$name is aliased to .|.$//g") "\$@"
+                    $(type "$name" | sed -r "s/^$name is aliased to \`|'$//g") "\$@"
                 }
                 alias ${name}='${name}_with_${functionality}'
 EOS)"
